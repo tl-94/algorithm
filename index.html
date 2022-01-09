@@ -1,13 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
-    
-    <script src="./dp/longestPalindrome.js"></script>
+
+    <!-- <script src="./dp/longestPalindrome.js"></script> -->
+    <script>
+        let dp = [];
+        var minPathSum = function (grid) {
+            const len = grid.length;
+            for (let i = 0; i < len; i++) {
+                dp.push(new Array(grid[i].length).fill(-1))
+            }
+
+            return dpFunc(grid, len - 1, grid[0].length - 1)
+        };
+        minPathSum([[1,2,3],[4,5,6]])
+        console.log(dp);
+
+        function dpFunc(grid, i, j) {
+            if(i < 0 || j < 0){
+                return 500;
+            }
+            if (dp[i][j] != -1) {
+                return dp[i][j]
+            }
+            if (i == 0 && j == 0) {
+                dp[i][j] = grid[i][j];
+            } else {
+                dp[i][j] = grid[i][j] + Math.min(dpFunc(grid, i - 1, j), dpFunc(grid, i, j - 1))
+            }
+
+            return dp[i][j]
+        }
+    </script>
 </body>
+
 </html>
