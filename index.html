@@ -10,8 +10,8 @@
 
 <body>
 
-    <!-- <script src="./dp/longestPalindrome.js"></script> -->
-    <script>
+    <!-- <script src="./index.js"></script> -->
+    <!-- <script>
         let dp = [];
         var minPathSum = function (grid) {
             const len = grid.length;
@@ -39,6 +39,26 @@
 
             return dp[i][j]
         }
+    </script> -->
+    <script>
+        const test = (n) => {
+            let arr = [1];
+
+            let a = 0, b = 0;
+
+            for(let i = 1; i <= n; i++){
+                let dp_3k = arr[a] * 3 + 1, dp_2k = arr[b] * 2 + 1;
+
+                arr[i] = Math.min(dp_3k, dp_2k);
+
+                if(arr[i] == dp_2k)b++
+                if(arr[i] == dp_3k)a++
+            }
+
+            return arr[n]
+        }
+        // debugger;
+         console.log(test(100));
     </script>
 </body>
 
